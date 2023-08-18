@@ -145,7 +145,25 @@ app.get('/search-recipes', async (req, res) => {
   });
 
 
+// Fetch saved data for a user (requires authentication)
+app.get('/saved-data', verifyToken, async (req, res) => {
+  try {
+    const { username } = req.user;
 
+    // Find the user
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return saved data
+    const savedData = user.savedData; // Assuming `savedData` is an array field in your User model
+    return res.status(200).json({ savedData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred' });
+  }
+});
 
 
 
