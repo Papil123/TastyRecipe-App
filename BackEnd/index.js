@@ -4,10 +4,12 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const axios = require("axios")
+const cors = require("cors")
 
 const app = express();
 const port = 3000;
 const secretKey = 'yourSecretKey';
+app.use(cors())
 
 mongoose.connect('mongodb+srv://papil1997:Papil123@cluster0.mgod2.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
