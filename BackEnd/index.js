@@ -85,7 +85,7 @@ app.post('/login', async (req, res) => {
 
 
 // Save recipe 
-app.post('/save-data', verifyToken, async (req, res) => {
+app.post('/save-data', async (req, res) => {
     try {
       const { data } = req.body;
       const { username } = req.user;
